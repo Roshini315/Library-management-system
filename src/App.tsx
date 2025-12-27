@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Library } from "./domain/Library";
-import { Book } from "./domain/book";
+import { Book } from "./domain/Book";
 import { User } from "./domain/User";
 
 const library = new Library();
@@ -15,11 +15,12 @@ function App() {
   const books = library.getBooks();
   const borrowed = user.getBorrowedBooks();
 
-  const borrowBook = (bookId: string) => {
-    const book = library.removeBook(bookId);
-    user.borrow(book);
-    refresh(v => v + 1);
-  };
+  const borrowBook = (id: string) => {
+  const book = library.borrowBook(id);
+  user.borrow(book);
+  refresh(v => v + 1);
+};
+
 
   return (
     <div style={{ padding: 20 }}>
