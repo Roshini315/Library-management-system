@@ -1,21 +1,40 @@
+import { useState } from "react";
 import { Library } from "./domain/Library";
-import { Book } from "./domain/Book";
+import { Book } from "./domain/book";
+import { User } from "./domain/User";
 
 const library = new Library();
+library.addBook(new Book("1", "Clean Code", 1));
+library.addBook(new Book("2", "Refactoring", 1));
+
+const user = new User();
 
 function App() {
+  const [, refresh] = useState(0);
+
   const books = library.getBooks();
+  const borrowed = user.getBorrowedBooks();
+
+  const borrowBook = (bookId: string) => {
+    const book = library.removeBook(bookId);
+    user.borrow(book);
+    refresh(v => v + 1);
+  };
 
   return (
     <div style={{ padding: 20 }}>
       <h2>Library</h2>
-
       {books.length === 0 && <p>No books available</p>}
-
       {books.map(book => (
         <div key={book.id}>
-          {book.title} ({book.copies})
+          {book.title}
+          <button onClick={() => borrowBook(book.id)}>Borrow</button>
         </div>
+      ))}
+
+      <h2>Borrowed Books</h2>
+      {borrowed.map(book => (
+        <div key={book.id}>{book.title}</div>
       ))}
     </div>
   );
