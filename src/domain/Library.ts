@@ -34,11 +34,12 @@ export class Library {
   }
 
   returnBook(book: Book): void {
-    const existing = this.books.find(b => b.id === book.id);
-    if (existing) {
-      existing.copies++;
-    } else {
-      this.books.push(book);
-    }
+  const existing = this.books.find(b => b.id === book.id);
+  if (existing) {
+    existing.copies++;
+  } else {
+    this.books.push(new Book(book.id, book.title, 1));
   }
+}
+
 }

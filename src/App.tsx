@@ -13,7 +13,13 @@ function App() {
   const [, refresh] = useState(0);
 
   const books = library.getBooks();
-  const borrowed = user.getBorrowedBooks();
+ const borrowed = user.getBorrowedBooks();
+
+  const returnBook = (book: Book) => {
+  user.return(book);
+  library.returnBook(book);
+  refresh(v => v + 1);
+};
 
   const borrowBook = (id: string) => {
   const book = library.borrowBook(id);
@@ -35,8 +41,11 @@ function App() {
 
       <h2>Borrowed Books</h2>
       {borrowed.map(book => (
-        <div key={book.id}>{book.title}</div>
-      ))}
+        <div key={book.id}>
+          {book.title}
+          <button onClick={() => returnBook(book)}>Return</button>
+  </div>
+))}
     </div>
   );
 }

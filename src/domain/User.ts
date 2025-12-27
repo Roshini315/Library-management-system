@@ -17,11 +17,12 @@ export class User {
   }
 
   return(book: Book): void {
-    const index = this.borrowedBooks.findIndex(b => b.id === book.id);
-    if (index !== -1) {
-      this.borrowedBooks.splice(index, 1);
-    }
+  const index = this.borrowedBooks.findIndex(b => b.id === book.id);
+  if (index !== -1) {
+    this.borrowedBooks.splice(index, 1);
   }
+}
+
 
   getBorrowedBooks(): Book[] {
     return [...this.borrowedBooks]; // shallow copy for safety
