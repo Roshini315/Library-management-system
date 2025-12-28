@@ -1,53 +1,49 @@
-import { useState } from "react";
-import { Library } from "./domain/Library";
-import { Book } from "./domain/Book";
-import { User } from "./domain/User";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider, useAuth } from "./auth/AuthContext";
+import Navbar from "./components/NavBar";
+import Login from "./auth/Login";
+import AdminLogin from "./auth/Adminlogin";
+import Home from "./pages/Home";
+import Books from "./pages/Books";
+import Borrowed from "./pages/Borrowed";
+import AdminDashboard from "./pages/AdminDashboard";
 
-const library = new Library();
-library.addBook(new Book("1", "Clean Code", 1));
-library.addBook(new Book("2", "Refactoring", 1));
-
-const user = new User();
-
-function App() {
-  const [, refresh] = useState(0);
-
-  const books = library.getBooks();
- const borrowed = user.getBorrowedBooks();
-
-  const returnBook = (book: Book) => {
-  user.return(book);
-  library.returnBook(book);
-  refresh(v => v + 1);
-};
-
-  const borrowBook = (id: string) => {
-  const book = library.borrowBook(id);
-  user.borrow(book);
-  refresh(v => v + 1);
-};
-
+function Layout() {
+  const { user } = useAuth();
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Library</h2>
-      {books.length === 0 && <p>No books available</p>}
-      {books.map(book => (
-        <div key={book.id}>
-          {book.title}
-          <button onClick={() => borrowBook(book.id)}>Borrow</button>
-        </div>
-      ))}
+    <>
+      {user && <Navbar />}    {/* Navbar ONLY here */}
 
-      <h2>Borrowed Books</h2>
-      {borrowed.map(book => (
-        <div key={book.id}>
-          {book.title}
-          <button onClick={() => returnBook(book)}>Return</button>
-  </div>
-))}
-    </div>
+      <Routes>
+        {!user && (
+          <>
+            <Route path="/" element={<Login />} />
+            <Route path="/admin-login" element={<AdminLogin />} />
+          </>
+        )}
+
+        {user && (
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/borrowed" element={<Borrowed />} />
+            {user.role === "admin" && (
+              <Route path="/admin" element={<AdminDashboard />} />
+            )}
+          </>
+        )}
+      </Routes>
+    </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AuthProvider>
+      <BrowserRouter>
+        <Layout />
+      </BrowserRouter>
+    </AuthProvider>
+  );
+}

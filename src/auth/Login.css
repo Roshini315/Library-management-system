@@ -1,0 +1,89 @@
+/* Full Background */
+.login-page {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Center Box */
+.login-box {
+  width: 420px;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 35px 45px;
+  border-radius: 12px;
+  border: 1px solid #d4c7b5;
+  box-shadow: 0 0 18px rgba(0,0,0,0.15);
+  text-align: center;
+}
+
+/* Title */
+.title {
+  font-size: 32px;
+  color: #2b2b2b;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Label */
+label {
+  display: block;
+  text-align: left;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Input Box */
+input {
+  width: 100%;
+  height: 38px;
+  border: 1px solid #c4b39b;
+  border-radius: 6px;
+  padding: 0 10px;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 18px;
+}
+
+input:focus {
+  border-color: #f7a34b;
+  box-shadow: 0 0 4px rgba(247,163,75,0.6);
+}
+
+/* Login Button */
+.login-btn {
+  width: 100%;
+  background: #ffa033;
+  border: none;
+  padding: 9px;
+  font-size: 17px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.login-btn:hover {
+  background: #e28515;
+}
+
+/* Admin Link */
+.admin-text {
+  margin-top: 20px;
+  color: #444;
+}
+
+.admin-link {
+  text-decoration: none;
+  font-weight: bold;
+  color: #603eb5;
+}
+
+.admin-link:hover {
+  text-decoration: underline;
+}
