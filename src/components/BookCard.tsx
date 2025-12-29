@@ -16,9 +16,13 @@ export default function BookCard({ book, action, actionText }: BookCardProps) {
         <h3>{book.title}</h3>
         <p>Copies: {book.copies}</p>
 
-        <button onClick={action}>
+        <button
+          disabled={book.copies <= 0}
+          onClick={() => action()}
+          className="borrow-btn">
           {actionText}
         </button>
+
       </div>
     </div>
   );

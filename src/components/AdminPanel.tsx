@@ -1,38 +1,30 @@
+import "./AdminPanel.css";
 import { useState } from "react";
+import { useLibraryContext } from "../context/LibraryContext";
 import { Book } from "../domain/Book";
 
-export default function AdminPanel({ library }: any) {
+export default function AdminPanel() {
   const [title, setTitle] = useState("");
   const [copies, setCopies] = useState(1);
   const [image, setImage] = useState("");
+  const { library } = useLibraryContext();
 
-  const addBook = () => {
-    library.addBook(new Book(Date.now()+"", title, copies, image));
-    setTitle("");
-    setCopies(1);
-    setImage("");
+  const add = () => {
+    if (!title || !copies) return alert("Fill all fields");
+    library.addBook(new Book(Date.now().toString(), title, copies, image));
+    alert("Book added!");
+    setTitle(""); setCopies(1); setImage("");
   };
 
   return (
-    <div className="p-8">
-      <h2 className="font-bold text-2xl mb-4">Admin Panel</h2>
+    <div className="admin-panel">
+      <h2>Add New Book</h2>
 
-      <div className="flex flex-col gap-3 w-80 bg-white shadow p-4 rounded">
-        <input className="border p-2" placeholder="Book Title" value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <input className="border p-2" type="number" min="1"
-          value={copies} onChange={(e) => setCopies(+e.target.value)}
-        />
-        <input className="border p-2" placeholder="Image URL"
-          value={image} onChange={(e) => setImage(e.target.value)}
-        />
+      <input placeholder="Book Title" value={title} onChange={e => setTitle(e.target.value)} />
+      <input placeholder="Image URL" value={image} onChange={e => setImage(e.target.value)} />
+      <input type="number" min="1" value={copies} onChange={e => setCopies(Number(e.target.value))} />
 
-        <button onClick={addBook}
-          className="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">
-          Add Book
-        </button>
-      </div>
+      <button onClick={add}>Add Book</button>
     </div>
   );
 }

@@ -17,12 +17,13 @@ export default function Books() {
 
       <div className="books-grid">
         {library.getBooks().map(book => (
-          <BookCard
-            key={book.id}
-            book={book}
-            action={() => handleBorrow(book.id)}
-            actionText="Borrow"
-          />
+        <BookCard
+          key={book.id}
+          book={book}
+          action={() => handleBorrow(book.id)}
+          actionText="Borrow"
+        />
+
         ))}
       </div>
     </div>

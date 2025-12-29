@@ -13,7 +13,9 @@ function Layout() {
 
   return (
     <>
-      {user && <Navbar />}    {/* Navbar ONLY here */}
+     
+      {user && user.role !== "admin" && <Navbar />}
+   
 
       <Routes>
         {!user && (

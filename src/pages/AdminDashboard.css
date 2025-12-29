@@ -1,33 +1,45 @@
 .admin-dashboard {
-  padding: 40px;
   min-height: 100vh;
-  background: #f4ebdb; /* light beige */
-  animation: fadeIn 0.4s ease-in;
+  background: #f4e3ce;
+  padding: 30px 60px;
+  font-family: "Poppins", sans-serif;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
 }
 
 .admin-title {
   font-size: 38px;
-  font-weight: bold;
-  color: #703423;
-  margin-bottom: 25px;
+  font-weight: 700;
+  color: #5c2e0c;
+}
+
+.btn-admin-logout {
+  background: #d57b2a;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.btn-admin-logout:hover {
+  background: #5c2e0c;
 }
 
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
 }
 
 .divider {
-  border: 0;
-  height: 1px;
-  background: rgba(0,0,0,0.2);
-  margin: 30px 0;
-}
-
-/* Simple fade animation */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  opacity: 0.4;
+  margin: 40px 0;
 }

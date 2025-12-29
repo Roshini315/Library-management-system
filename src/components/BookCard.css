@@ -50,3 +50,7 @@
 .book-card button:hover {
   background: #8a4c13;
 }
+.borrow-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
