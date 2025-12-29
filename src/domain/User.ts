@@ -25,6 +25,6 @@ export class User {
 
 
   getBorrowedBooks(): Book[] {
-    return [...this.borrowedBooks]; // shallow copy for safety
+    return [...this.borrowedBooks]; 
   }
 }

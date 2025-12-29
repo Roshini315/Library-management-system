@@ -8,7 +8,7 @@ export default function Books() {
   const { user } = useAuth();
 
   const handleBorrow = (id: string) => {
-    borrow(user!.name, id);  // reduces copies + updates UI
+    borrow(user!.name, id); 
   };
 
   return (
