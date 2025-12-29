@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+# 📚 Library Management System – Coding Challenge (React + TypeScript)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is developed as part of the **Hexad Coding Challenge**.  
+It follows an **agile, story-based approach**, committing code after each story to show thought evolution.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features Implemented
 
-## React Compiler
+### 👤 User Functions
+| Feature | Description |
+|--------|-------------|
+| Borrow Book | Removes from library & adds to borrowed list |
+| Max Borrow Rule | User can borrow **max 2 books** |
+| Copy Rule | Only **1 copy per user** even if multiple exist |
+| Multiple Copies | Borrow reduces only 1 copy, NOT full item |
+| Last Copy | Removes full book from library |
+| Return Book | Adds book back to library & updates stock |
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🛠 Admin Functions
+| Feature | Description |
+|--------|-------------|
+| Login (Admin Only) | `/admin-login` |
+| Add Book | Title + copies + image URL |
+| Auto Refresh | Books appear instantly in user books list |
+| Dashboard Stats | Books, Users, Borrowed (sample static) |
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🧪 Technical Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+| Tool | Usage |
+|------|-------|
+| React + TypeScript | Frontend |
+| Vite | Build Tool |
+| Custom React Context | Global Library State |
+| Vitest + jsdom | Unit Testing |
+| Pure CSS | Styling (No Tailwind in final UI) |
+| Git | Version control – story-based commits |
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🧬 Architecture Overview
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
